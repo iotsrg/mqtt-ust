@@ -95,14 +95,18 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 ---
 
-## 🔧 Tools Mentioned (No Commands)
+## 🔧 Tools Mentioned
 
 - **Mosquitto**: Lightweight MQTT broker
 - **MQTT Explorer**: GUI client for debugging
+- **ralmqtt** - https://github.com/Red-Alert-Labs/ralmqtt/
 - **EvilMQTT**: Rogue MQTT broker for exploitation
 - **Ioxy**: MITM proxy for MQTT traffic inspection
 - **Boofuzz / MQTT-Fuzz**: Used for protocol fuzzing and broker stress tests
 - **ESP32**: IoT device to emulate real-world MQTT clients
+- **IoT-MQTT-Healthcare-Simulator**: https://github.com/ErickJO16/IoT-MQTT-Healthcare-Simulator
+- **ICS-Ninja-Scanner**: https://github.com/MottaSec/ICS-Ninja-Scanner
+
 
 ---
 
