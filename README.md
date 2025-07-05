@@ -18,10 +18,11 @@ _Unleash chaos in MQTT ecosystems, learn exploitation and secure it right._
 - **OS:** Kali / Parrot / IoTPTv2  
 - **Tools:**  
   - `mosquitto`, `mqtt-explorer`, `mqtt-spy`  
-  - `nmap`, `wireshark`, `evilmqtt`, `mitmproxy`  
+  - `nmap`, `wireshark`, `evilmqtt`, `mitmproxy` `mqtt-pwn`, `ioxy`
   - Python 3 + `paho-mqtt`  
 - **Network:** Local MQTT broker or lab VM  
 - **Browser Access:** Optional for GUI clients
+- **hardware Gadgets** ESP32
 
 ---
 
