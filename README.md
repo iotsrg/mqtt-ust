@@ -116,3 +116,7 @@ _Exploiting and Securing MQTT in IoT Environments_
 - Pre-configured Mosquitto broker configuration
 - Python scripts for retained message injection and topic flooding
 - Quick-reference MQTT attack and defense cheat sheet
+
+referrals
+
+- https://www.instructables.com/Secure-Mosquitto-MQTT-Server-for-IoT-Devices-ESP32/
