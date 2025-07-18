@@ -52,7 +52,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
 void reconnect() {
   while (!client.connected()) {
-    if (client.connect("ESP32Client")) {
+    if (client.connect("ESP32Client", "espuser", "your_password")) {
       client.subscribe("/admin/cmd");
     } else {
       delay(5000);
