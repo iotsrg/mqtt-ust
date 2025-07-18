@@ -92,6 +92,8 @@ topic read test/topic
 Edit `/etc/mosquitto/mosquitto.conf`:
 
 ```conf
+log_type all   #[[add this before log_dest line]]
+
 allow_anonymous false
 password_file /etc/mosquitto/passwd
 acl_file /etc/mosquitto/acl
