@@ -4,9 +4,9 @@ To install an MQTT broker (like Mosquitto) on Raspberry Pi OS (formerly Raspbian
 
 ---
 
-### ✅ Step-by-Step: Installing Mosquitto on Raspberry Pi
+### Step-by-Step: Installing Mosquitto on Raspberry Pi
 
-📍 These steps work for Raspberry Pi OS (Lite or Desktop).
+ These steps work for Raspberry Pi OS (Lite or Desktop).
 
 ---
 
