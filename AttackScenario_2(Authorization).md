@@ -113,7 +113,7 @@ sudo systemctl restart mosquitto
 mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP> -t /admin/cmd -m "on"
 ```
 
-You’ll see:
+You’ll see this in logs or use -d (debug): [sudo tail -f /var/log/mosquitto/mosquitto.log]
 
 ```
 Connection Accepted but Publish failed
