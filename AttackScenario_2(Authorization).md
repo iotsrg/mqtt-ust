@@ -52,7 +52,7 @@ mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP> -t /admin/cmd -m "on"
 ###  Step 4: Attacker2 reads DHT data
 
 ```bash
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t esp32/sensor
+mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t /esp32/sensor
 ```
 
  Attacker2 gets temperature and humidity
@@ -128,7 +128,7 @@ Error: Not authorized.
 ###  Attacker2 tries to subscribe to /esp32/sensor:
 
 ```bash
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t esp32/sensor
+mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t /esp32/sensor
 ```
 
  **Access denied**
