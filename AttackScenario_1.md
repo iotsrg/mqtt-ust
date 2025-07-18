@@ -15,7 +15,7 @@
 * ESP32 is:
 
   * Publishing **DHT data** to `esp32/sensor`
-  * Subscribing to `esp32/led` for control
+  * Subscribing to `/admin/cmd` for control
 
 ---
 
@@ -44,7 +44,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     msg += (char)payload[i];
   }
 
-  if (String(topic) == "esp32/led") {
+  if (String(topic) == "/admin/cmd") {
     if (msg == "on") digitalWrite(LEDPIN, HIGH);
     else if (msg == "off") digitalWrite(LEDPIN, LOW);
   }
@@ -53,7 +53,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void reconnect() {
   while (!client.connected()) {
     if (client.connect("ESP32Client")) {
-      client.subscribe("esp32/led");
+      client.subscribe("/admin/cmd");
     } else {
       delay(5000);
     }
@@ -129,7 +129,7 @@ esp32/sensor {"temp":27.8,"hum":55.1}
 ### 2. **Turn on the ESP32 LED remotely (unauthorized control)**:
 
 ```bash
-mosquitto_pub -h <RPI_IP> -t esp32/led -m "on"
+mosquitto_pub -h <RPI_IP> -t /admin/cmd -m "on"
 ```
 
 **LED on ESP32 turns on**
@@ -185,7 +185,7 @@ client.connect("ESP32Client", "espuser", "your_password")
 ### From attacker device:
 
 ```bash
-mosquitto_pub -h <RPI_IP> -t esp32/led -m "on"
+mosquitto_pub -h <RPI_IP> -t /admin/cmd -m "on"
 ```
 
  **Fails** with:
@@ -197,7 +197,7 @@ Connection Refused: not authorised.
 ### Authorized publish:
 
 ```bash
-mosquitto_pub -u espuser -P your_password -h <RPI_IP> -t esp32/led -m "on"
+mosquitto_pub -u espuser -P your_password -h <RPI_IP> -t /admin/cmd -m "on"
 ```
 
  Works as expected
