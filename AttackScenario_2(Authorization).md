@@ -29,10 +29,10 @@ But: No **topic-level restrictions** = Authorization flaw
 
 ##  Attack Simulation
 
-### Step 1: Create a second user (attacker)
+### Step 1: Create a second user (attacker2)
 
 ```bash
-sudo mosquitto_passwd /etc/mosquitto/passwd attacker
+sudo mosquitto_passwd /etc/mosquitto/passwd attacker2
 ```
 
 ###  Step 2: Restart Mosquitto
@@ -41,27 +41,27 @@ sudo mosquitto_passwd /etc/mosquitto/passwd attacker
 sudo systemctl restart mosquitto
 ```
 
-###  Step 3: Attacker connects and **turns on ESP32’s LED**
+###  Step 3: Attacker2 connects and **turns on ESP32’s LED**
 
 ```bash
-mosquitto_pub -u attacker -P attackerpass -h <RPI_IP> -t /admin/cmd -m "on"
+mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP> -t /admin/cmd -m "on"
 ```
 
 ✅ **LED on ESP32 turns on**
 
-###  Step 4: Attacker reads DHT data
+###  Step 4: Attacker2 reads DHT data
 
 ```bash
-mosquitto_sub -u attacker -P attackerpass -h <RPI_IP> -t esp32/sensor
+mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t esp32/sensor
 ```
 
- Attacker gets temperature and humidity
+ Attacker2 gets temperature and humidity
 
 ---
 
 ##  Why This Is Dangerous:
 
-* Even though the attacker is authenticated, they’re **not authorized** to control or read the ESP32
+* Even though the attacker2 is authenticated, they’re **not authorized** to control or read the ESP32
 * This can happen in shared environments (e.g., multiple IoT devices using the same broker)
 
 ---
@@ -82,8 +82,8 @@ user espuser
 topic readwrite /admin/cmd
 topic readwrite /esp32/sensor
 
-# For attacker (restricted)
-user attacker
+# For attacker2 (restricted)
+user attacker2
 topic read test/topic
 ```
 
@@ -107,10 +107,10 @@ sudo systemctl restart mosquitto
 
 ##  Test the Fix
 
-###  Attacker tries to publish to /admin/cmd:
+###  Attacker2 tries to publish to /admin/cmd:
 
 ```bash
-mosquitto_pub -u attacker -P attackerpass -h <RPI_IP> -t /admin/cmd -m "on"
+mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP> -t /admin/cmd -m "on"
 ```
 
 You’ll see:
@@ -125,18 +125,18 @@ or
 Error: Not authorized.
 ```
 
-###  Attacker tries to subscribe to /esp32/sensor:
+###  Attacker2 tries to subscribe to /esp32/sensor:
 
 ```bash
-mosquitto_sub -u attacker -P attackerpass -h <RPI_IP> -t esp32/sensor
+mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t esp32/sensor
 ```
 
  **Access denied**
 
- Attacker **can still use allowed topics**, like:
+ Attacker2 **can still use allowed topics**, like:
 
 ```bash
-mosquitto_pub -u attacker -P attackerpass -h <RPI_IP> -t test/topic -m "hello"
+mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP> -t test/topic -m "hello"
 ```
 
 ---
@@ -156,7 +156,7 @@ Make sure `espuser` can still:
 | ----------------- | ----------------------------------------------------------------------------------- |
 | **Vulnerability** | No topic-level access control (authorization)                                       |
 | **Impact**        | Any user can control or spy on any device                                           |
-| **Demo**          | Attacker user turns on LED and reads DHT data                                       |
+| **Demo**          | Attacker2 user turns on LED and reads DHT data                                       |
 | **Fix**           | Implement Mosquitto **ACLs** based on usernames                                     |
 | **Bonus**         | Use different **users for different roles/devices** (e.g., dashboard, sensor nodes) |
 
