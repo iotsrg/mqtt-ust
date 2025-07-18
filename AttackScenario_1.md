@@ -30,9 +30,9 @@
 #define DHTTYPE DHT22
 #define LEDPIN 2
 
-const char* ssid = "YOUR_WIFI_SSID";
-const char* password = "YOUR_WIFI_PASSWORD";
-const char* mqtt_server = "YOUR_RPI_IP";  // e.g., 192.168.1.100
+const char* ssid = "testing";
+const char* password = "00000000";
+const char* mqtt_server = "192.168.1.102";  
 
 WiFiClient espClient;
 PubSubClient client(espClient);
