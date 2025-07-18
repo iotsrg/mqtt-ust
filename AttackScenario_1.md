@@ -14,7 +14,7 @@
 * MQTT Broker is running on a **Raspberry Pi** using **Mosquitto**
 * ESP32 is:
 
-  * Publishing **DHT data** to `esp32/dht`
+  * Publishing **DHT data** to `esp32/sensor`
   * Subscribing to `esp32/led` for control
 
 ---
@@ -27,7 +27,7 @@
 #include <DHT.h>
 
 #define DHTPIN 4
-#define DHTTYPE DHT22
+#define DHTTYPE DHT11
 #define LEDPIN 2
 
 const char* ssid = "testing";
@@ -80,7 +80,7 @@ void loop() {
 
   if (!isnan(temp) && !isnan(hum)) {
     String payload = "{\"temp\":" + String(temp) + ",\"hum\":" + String(hum) + "}";
-    client.publish("esp32/dht", payload.c_str());
+    client.publish("esp32/sensor", payload.c_str());
   }
 
   delay(5000);
@@ -114,7 +114,7 @@ sudo systemctl restart mosquitto
 
 ## Attack Demonstration (from Attacker Laptop or RPi Itself)
 
-### 1. **Subscribe to all data (esp32/dht)**:
+### 1. **Subscribe to all data (esp32/sensor)**:
 
 ```bash
 mosquitto_sub -h <RPI_IP> -t "#" -v
@@ -123,7 +123,7 @@ mosquitto_sub -h <RPI_IP> -t "#" -v
 Shows:
 
 ```
-esp32/dht {"temp":27.8,"hum":55.1}
+esp32/sensor {"temp":27.8,"hum":55.1}
 ```
 
 ### 2. **Turn on the ESP32 LED remotely (unauthorized control)**:
