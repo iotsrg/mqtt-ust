@@ -118,13 +118,14 @@ mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP> -t /admin/cmd -m "on"
 You’ll see this in logs or use -d (debug): [sudo tail -f /var/log/mosquitto/mosquitto.log]
 
 ```
-Connection Accepted but Publish failed
-```
+1752866858: New connection from 192.168.1.102 on port 1883.
+1752866858: New client connected from 192.168.1.102 as mosqpub|2766-raspberryp (c1, k60, u'attacker2').
+1752866858: No will message specified.
+1752866858: Sending CONNACK to mosqpub|2766-raspberryp (0, 0)
+1752866858: Denied PUBLISH from mosqpub|2766-raspberryp (d0, q0, r0, m0, '/admin/cmd', ... (2 bytes))
+1752866858: Received DISCONNECT from mosqpub|2766-raspberryp
+1752866858: Client mosqpub|2766-raspberryp disconnected.
 
-or
-
-```
-Error: Not authorized.
 ```
 
 ###  Attacker2 tries to subscribe to /esp32/sensor:
