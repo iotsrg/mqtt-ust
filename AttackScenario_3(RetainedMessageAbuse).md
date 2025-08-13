@@ -1,24 +1,24 @@
 
 ---
 
-## 🚨 Attack Scenario 3: **Retained Message Abuse**
+##  Attack Scenario 3: **Retained Message Abuse**
 
-### 🎯 Goal:
+###  Goal:
 
 Show how an attacker can **inject a persistent command** into a topic (like `/admin/cmd`) using a **retained message**, so that the ESP32 executes the command **automatically on reconnect** — even if the attacker is no longer active.
 
 ---
 
-## 🧠 Why This Matters
+##  Why This Matters
 
 * In MQTT, a **retained message** stays on the broker and is **delivered to every new subscriber** immediately after subscription.
 * This means a malicious command (e.g., `led = on`) can be stored and **replayed silently** to a device **forever**, until it's overwritten or cleared.
 
 ---
 
-## 🧪 Attack Setup
+##  Attack Setup
 
-### ✅ Assumptions:
+###  Assumptions:
 
 * ESP32 subscribes to: `/admin/cmd`
 * MQTT broker is running and allows `attacker3` to publish to that topic
@@ -26,7 +26,7 @@ Show how an attacker can **inject a persistent command** into a topic (like `/ad
 
 ---
 
-### 📜 ESP32 Snippet (Already in your code):
+###  ESP32 Snippet (Already in your code):
 
 ```cpp
 if (String(topic) == "/admin/cmd") {
@@ -37,7 +37,7 @@ if (String(topic) == "/admin/cmd") {
 
 ---
 
-### 🔧 Temporarily Allow Attacker3 in ACL (for demo)
+###  Temporarily Allow Attacker3 in ACL (for demo)
 
 Modify `/etc/mosquitto/acl`:
 
@@ -54,7 +54,7 @@ sudo systemctl restart mosquitto
 
 ---
 
-### 👾 Attacker Action: Inject Retained Command
+###  Attacker Action: Inject Retained Command
 
 ```bash
 mosquitto_pub -u attacker3 -P attackerpass -h 192.168.1.105 -t /admin/cmd -m "on" -r
@@ -65,18 +65,18 @@ This stores `"on"` on topic `/admin/cmd` **on the broker**
 
 ---
 
-### 🧪 Demo the Effect
+###  Demo the Effect
 
 1. **Reboot the ESP32** (or power cycle it)
 2. It reconnects and resubscribes to `/admin/cmd`
 3. Immediately, broker sends `"on"` → LED turns on
-   👉 Even though no attacker is online!
+    Even though no attacker is online!
 
 You’ll see no activity on the attacker’s terminal — it’s **silent, stealthy persistence**
 
 ---
 
-## 💥 Impact
+##  Impact
 
 * Malicious control payloads persist **indefinitely**
 * Devices can be hijacked **long after** the attacker is gone
@@ -84,7 +84,7 @@ You’ll see no activity on the attacker’s terminal — it’s **silent, steal
 
 ---
 
-## 🛠️ Remediation: Handle Retained Messages Securely
+##  Remediation: Handle Retained Messages Securely
 
 ### ✅ 1. **Clear Retained Messages Explicitly**
 
@@ -94,7 +94,7 @@ To delete the retained message from the broker:
 mosquitto_pub -u attacker3 -P attackerpass -h 192.168.1.105 -t /admin/cmd -n -r
 ```
 
-🧹 `-n` = send **null (empty)** payload
+ `-n` = send **null (empty)** payload
 ✅ This **removes** the retained message
 
 ---
@@ -133,9 +133,9 @@ topic /admin/cmd retain false
 
 ---
 
-## 📋 Summary for Workshop
+##  Summary for Workshop
 
-| 🔍                | Item                                                                |
+| Item              | Desc                                                                |
 | ----------------- | ------------------------------------------------------------------- |
 | **Vulnerability** | MQTT retained messages can be used to persist malicious commands    |
 | **Impact**        | Device executes commands long after attacker is gone                |
