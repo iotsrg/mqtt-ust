@@ -12,13 +12,13 @@ We’ll do 3 mini-attacks and then lock things down.
 
 ---
 
-##  Lab assumptions (your setup)
+##  Lab assumptions
 
 * Broker: Mosquitto on Raspberry Pi (auth + ACLs already in place)
 * ESP32:
 
   * **Subscribes to `/admin/cmd`** (LED control)
-  * Publishes DHT to `esp32/dht`
+  * Publishes DHT to `/esp32/sensor`
 * “Attacker” user: `attacker2` (we’ll allow it to publish only under `flood/#` for safety, and optionally to `/admin/cmd` during the demo phase)
 
 ---
@@ -204,7 +204,7 @@ log_dest file /var/log/mosquitto/mosquitto.log
 
 **Why these help**
 
-* `max_connections` caps connection-storm damage. ([Eclipse Mosquitto][2])
+* `max_connections` caps connection-storm damage.
 * `message_size_limit` blocks jumbo payloads. ([Debian Manpages][3], [Ubuntu Manpages][4])
 * `max_inflight_messages` + `max_queued_messages`/`bytes` stop a single client from hoarding broker memory/acks; dropped counts show under `$SYS/…/dropped`.
 * `queue_qos0_messages false` avoids building QoS0 mountains when a client is offline.
@@ -279,7 +279,6 @@ client.setBufferSize(512);   // only if you truly need larger commands
 * There’s **no built-in per-client msg/sec throttle** — enforce with firewall/gateway if needed. ([Stack Overflow][6])
 * Harden clients: **debounce `/admin/cmd`**, validate inputs, and keep ACLs tight.
 
-[3]: https://manpages.debian.org/stretch/mosquitto/mosquitto.conf.5.en.html?utm_source=chatgpt.com "mosquitto.conf(5)"
-[4]: https://manpages.ubuntu.com/manpages/kinetic/man5/mosquitto.conf.5.html?utm_source=chatgpt.com "mosquitto.conf - the configuration file for ..."
-[5]: https://www.systutorials.com/docs/linux/man/5-mosquitto.conf/?utm_source=chatgpt.com "mosquitto.conf (5) - Linux Manuals"
-[6]: https://stackoverflow.com/questions/52892133/can-i-throttle-mosquitto-so-that-no-client-may-publish-more-than-n-messages-per?utm_source=chatgpt.com "Can I throttle mosquitto so that no client may publish more ..."
+[3]: https://manpages.debian.org/stretch/mosquitto/mosquitto.conf.5.en.html "mosquitto.conf(5)"
+[4]: https://manpages.ubuntu.com/manpages/kinetic/man5/mosquitto.conf.5.html "mosquitto.conf - the configuration file for ..."
+[6]: https://stackoverflow.com/questions/52892133/can-i-throttle-mosquitto-so-that-no-client-may-publish-more-than-n-messages-per "Can I throttle mosquitto so that no client may publish more ..."
