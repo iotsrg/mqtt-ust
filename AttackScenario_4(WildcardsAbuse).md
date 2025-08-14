@@ -62,7 +62,7 @@ mosquitto_sub -u attacker4 -P attackerpass -h <RPI_IP> -t "#" -v
 Now **trigger an admin command** from your admin user or any authorized client:
 
 ```bash
-mosquitto_pub -u espuser -P espuser_password -h <RPI_IP> -t /admin/cmd -m "on"
+mosquitto_pub -u espuser -P your_password -h <RPI_IP> -t /admin/cmd -m "on"
 ```
 
 **Attacker sees:**
