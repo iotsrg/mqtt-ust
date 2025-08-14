@@ -65,7 +65,7 @@ sudo systemctl restart mosquitto
 
 ---
 
-#  Part A — High-rate publish flood (single topic)
+##  Part A — High-rate publish flood (single topic)
 
 ### Quick one-liner (simple, fast)
 
@@ -86,7 +86,7 @@ yes "x" | head -n 50000 | mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP>
 
 ---
 
-#  Part B — Topic-churn flood (create thousands of topics)
+##  Part B — Topic-churn flood (create thousands of topics)
 
 ### Python “attacker” (recommended)
 
@@ -133,7 +133,7 @@ python3 attacker_topic_churn.py --host <RPI_IP> --user attacker2 --pw attackerpa
 
 ---
 
-#  Part C — Direct client overload (hammer `/admin/cmd`)
+##  Part C — Direct client overload (hammer `/admin/cmd`)
 
 *(Do this only briefly — it will spam the ESP32 callback.)*
 
@@ -148,7 +148,7 @@ yes "on" | head -n 20000 | mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP
 
 ---
 
-#  Cleanup after demo
+##  Cleanup after demo
 
 * Kill any running publishers.
 * If you used retained spam:
@@ -224,7 +224,7 @@ sudo nft add rule inet mqtt input tcp dport 1883 drop
 
 ---
 
-#  Remediation (ESP32/client-side)
+##  Remediation (ESP32/client-side)
 
 **Goal:** make `/admin/cmd` resilient to spam.
 
