@@ -206,8 +206,8 @@ log_dest file /var/log/mosquitto/mosquitto.log
 
 * `max_connections` caps connection-storm damage. ([Eclipse Mosquitto][2])
 * `message_size_limit` blocks jumbo payloads. ([Debian Manpages][3], [Ubuntu Manpages][4])
-* `max_inflight_messages` + `max_queued_messages`/`bytes` stop a single client from hoarding broker memory/acks; dropped counts show under `$SYS/…/dropped`. ([Eclipse Mosquitto][1], [SysTutorials][5])
-* `queue_qos0_messages false` avoids building QoS0 mountains when a client is offline. ([SysTutorials][5])
+* `max_inflight_messages` + `max_queued_messages`/`bytes` stop a single client from hoarding broker memory/acks; dropped counts show under `$SYS/…/dropped`.
+* `queue_qos0_messages false` avoids building QoS0 mountains when a client is offline.
 
 > Heads-up: Mosquitto **does not** have built-in per-client **rate limiting** (messages/sec). Use OS firewalls/proxies or app-layer gateways if you need strict throttling. ([Stack Overflow][6])
 
