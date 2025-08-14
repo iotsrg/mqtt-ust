@@ -181,7 +181,7 @@ topic read $SYS/#
 
 ---
 
-## Workshop Flow (10–15 min)
+## Workshop Flow
 
 1. Show attacker subscribing to `#` and `$SYS/#` → watch everything fly by
 2. Send `/admin/cmd on` and show attacker sees it
