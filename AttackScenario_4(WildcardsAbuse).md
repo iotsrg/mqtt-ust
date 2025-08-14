@@ -74,7 +74,7 @@ mosquitto_pub -u espuser -P espuser_password -h <RPI_IP> -t /admin/cmd -m "on"
 Also sees **all telemetry**:
 
 ```
-esp32/sensor {"temp":28.7,"hum":88.9}
+/esp32/sensor {"temp":28.7,"hum":88.9}
 ```
 
 ### 3) Snoop broker internals
@@ -84,6 +84,11 @@ If not restricted, `$SYS/#` reveals broker stats:
 ```bash
 mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t '$SYS/#' -v
 ```
+
+If it is restricted and configured, only admins can read the internal stats of MQTT
+
+<img width="1595" height="919" alt="image" src="https://github.com/user-attachments/assets/f3fd3db5-1af4-40ff-b9d8-9f61160f4325" />
+
 
 > This can leak client IDs, uptime, subscriptions, message rates, etc.
 
@@ -107,17 +112,17 @@ Replace your `/etc/mosquitto/acl` with **narrow rules**:
 # --- Device user (ESP32) ---
 user espuser
 topic read /admin/cmd
-topic write esp32/sensor
+topic write /esp32/sensor
 
 # --- Dashboard user (read-only UI), example ---
 user dashboard
-topic read esp32/sensor
+topic read /esp32/sensor
 # (No access to /admin/cmd)
 
 # --- Admin operator (can issue commands) ---
 user admin
 topic readwrite /admin/cmd
-topic read esp32/sensor
+topic read /esp32/sensor
 
 # --- Attacker2 (restricted for demo) ---
 user attacker2
@@ -142,7 +147,7 @@ sudo systemctl restart mosquitto
 ```bash
 mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "#" -v -d
 mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "/admin/#" -v -d
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "esp32/#" -v -d
+mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "/esp32/#" -v -d
 ```
 
 * The client will connect (CONNACK 0), but **won’t receive anything**.
@@ -209,9 +214,9 @@ mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "/admin/#" -v -d
 * **Don’t grant wildcard subscriptions** to non-admin users.
 * **Exact topic ACLs** enforce least privilege:
 
-  * ESP32: `read /admin/cmd`, `write esp32/sensor`
+  * ESP32: `read /admin/cmd`, `write /esp32/sensor`
   * Admin: `readwrite /admin/cmd`
-  * Dashboard: `read esp32/sensor`
+  * Dashboard: `read /esp32/sensor`
 * Optionally restrict `$SYS/#` to admins.
 
 ---
