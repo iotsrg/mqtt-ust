@@ -38,8 +38,8 @@ user espuser
 topic read /admin/cmd
 topic write esp32/sensor
 
-# Attacker (for the demo – too broad!)
-user attacker2
+# Attacker4 (for the demo – too broad!)
+user attacker4
 topic read #
 ```
 
@@ -56,7 +56,7 @@ sudo systemctl restart mosquitto
 Open a terminal (attacker machine or same Pi):
 
 ```bash
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "#" -v
+mosquitto_sub -u attacker4 -P attackerpass -h <RPI_IP> -t "#" -v
 ```
 
 Now **trigger an admin command** from your admin user or any authorized client:
