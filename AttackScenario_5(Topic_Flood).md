@@ -1,4 +1,3 @@
-Love it — here’s a **big, workshop-friendly** deep-dive on the next one.
 
 #  Attack Scenario 5: Topic Flooding (publish/Topic-churn DoS)
 
