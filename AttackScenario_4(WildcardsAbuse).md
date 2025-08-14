@@ -30,7 +30,7 @@ Show how an “attacker” user can:
 
 ### 1) Loosen ACLs
 
-Give the attacker read access to **everything** to show impact. Edit `/etc/mosquitto/acl`:
+Give the attacker4 read access to **everything** to show impact. Edit `/etc/mosquitto/acl`:
 
 ```conf
 # Legit device user (ESP32)
@@ -65,7 +65,7 @@ Now **trigger an admin command** from your admin user or any authorized client:
 mosquitto_pub -u espuser -P your_password -h <RPI_IP> -t /admin/cmd -m "on"
 ```
 
-**Attacker sees:**
+**Attacker4 sees:**
 
 ```
 /admin/cmd on
@@ -82,10 +82,10 @@ Also sees **all telemetry**:
 If not restricted, `$SYS/#` reveals broker stats:
 
 ```bash
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t '$SYS/#' -v
+mosquitto_sub -u attacker4 -P attackerpass -h <RPI_IP> -t '$SYS/#' -v
 ```
 
-If it is restricted and configured, only admins can read the internal stats of MQTT
+If it is restricted and configured properly, only Authenticated admins can read the internal stats of MQTT
 
 <img width="1595" height="919" alt="image" src="https://github.com/user-attachments/assets/f3fd3db5-1af4-40ff-b9d8-9f61160f4325" />
 
@@ -124,8 +124,8 @@ user admin
 topic readwrite /admin/cmd
 topic read /esp32/sensor
 
-# --- Attacker2 (restricted for demo) ---
-user attacker2
+# --- Attacker4 (restricted for demo) ---
+user attacker4
 # Only allowed to read a harmless test area:
 topic read test/#
 
@@ -145,22 +145,22 @@ sudo systemctl restart mosquitto
 **Attacker tries wildcards:**
 
 ```bash
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "#" -v -d
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "/admin/#" -v -d
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "/esp32/#" -v -d
+mosquitto_sub -u attacker4 -P attackerpass -h <RPI_IP> -t "#" -v -d
+mosquitto_sub -u attacker4 -P attackerpass -h <RPI_IP> -t "/admin/#" -v -d
+mosquitto_sub -u attacker4 -P attackerpass -h <RPI_IP> -t "/esp32/#" -v -d
 ```
 
 * The client will connect (CONNACK 0), but **won’t receive anything**.
 * With logging enabled, your broker will show entries like:
 
   ```
-  Denied SUBSCRIBE to '/admin/#' for username 'attacker2'
+  Denied SUBSCRIBE to '/admin/#' for username 'attacker4'
   ```
 
 **Attacker can still read allowed test topics:**
 
 ```bash
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "test/#" -v
+mosquitto_sub -u attacker4 -P attackerpass -h <RPI_IP> -t "test/#" -v
 ```
 
 ### 3) (Optional) Separate roles by users
@@ -198,13 +198,13 @@ topic read $SYS/#
 sudo tail -f /var/log/mosquitto/mosquitto.log
 
 # Attacker snooping (before fix)
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "#" -v
+mosquitto_sub -u attacker4 -P attackerpass -h <RPI_IP> -t "#" -v
 
 # Send admin command (authorized)
 mosquitto_pub -u admin -P adminpass -h <RPI_IP> -t /admin/cmd -m "off"
 
 # After fix: Attacker tries, sees nothing
-mosquitto_sub -u attacker2 -P attackerpass -h <RPI_IP> -t "/admin/#" -v -d
+mosquitto_sub -u attacker4 -P attackerpass -h <RPI_IP> -t "/admin/#" -v -d
 ```
 
 ---
