@@ -1,4 +1,4 @@
-# User Password Table
+# Users & Password Table
 
 | User      | Password      |
 |-----------|---------------|
