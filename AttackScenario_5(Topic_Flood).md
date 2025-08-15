@@ -128,7 +128,7 @@ On your Raspberry Pi (or another device connected to broker), run:
 mosquitto_sub -h <RPI IP> -u topicvictim -P topicvictim -t '#' -q 0 -v
 ```
 
-# means “subscribe to everything”.
+'#' means “subscribe to everything”.
 
 -v makes Mosquitto show both topic and message.
 
