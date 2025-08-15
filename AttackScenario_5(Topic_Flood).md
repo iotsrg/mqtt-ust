@@ -45,7 +45,11 @@ mosquitto_sub -u admin -P adminpass -h <RPI_IP> -t '$SYS/broker/publish/messages
 
 ---
 
-##  Temporarily relax ACLs
+##  Temporarily relax ACLs and add new attacker:
+
+```conf
+sudo mosquitto_passwd /etc/mosquitto/passwd attacker5
+```
 
 In `/etc/mosquitto/acl` add a sandbox where the attacker can write:
 
