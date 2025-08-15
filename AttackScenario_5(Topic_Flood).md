@@ -161,14 +161,14 @@ python3 attacker_topic_churn.py --host <RPI IP> --user attacker5 --pw attackerpa
 *(Do this only briefly — it will spam the ESP32 callback.)*
 
 ```bash
-yes "on" | head -n 20000 | mosquitto_pub -u attacker5 -P attackerpass -h <RPI_IP> -t /admin/cmd -l -q 1
+yes "on" | head -n 20000 | mosquitto_pub -u attacker5 -P attackerpass -h <RPI_IP> -t /admin/cmd -l -q 0
 ```
 
 **Expected effect**
 
 * ESP32’s `callback` fires thousands of times; LED may appear stuck/rapid flicker
 * If your sketch toggles GPIO per message, the loop will get busy; Wi-Fi/MQTT keepalive may suffer (eventually disconnect/reconnect)
-
+* Will not be able to switch off when the food is ongoing (temporary DOS)
 ---
 
 ##  Cleanup after demo
