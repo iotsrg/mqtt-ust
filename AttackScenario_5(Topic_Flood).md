@@ -158,7 +158,7 @@ python3 attacker_topic_churn.py --host <RPI IP> --user attacker5 --pw attackerpa
 
 ##  Part C — Direct client overload (hammer `/admin/cmd`)
 
-*(Do this only briefly — it will spam the ESP32 callback.)*
+
 
 ```bash
 yes "on" | head -n 20000 | mosquitto_pub -u attacker5 -P attackerpass -h <RPI_IP> -t /admin/cmd -l -q 0
