@@ -120,8 +120,9 @@ for i in range(args.count):
     client.publish(topic, payload, qos=args.qos, retain=args.retain)
 client.disconnect()
 ```
-Steps to Demonstrate
-1️. Set Up the Victim Subscriber
+### Steps to Demonstrate
+
+#### 1️. Set Up the Victim Subscriber
 On your Raspberry Pi (or another device connected to broker), run:
 
 ```bash
@@ -133,7 +134,8 @@ mosquitto_sub -h <RPI IP> -u topicvictim -P topicvictim -t '#' -q 0 -v
 -v makes Mosquitto show both topic and message.
 
 
-2️. Run the Attacker Flood
+#### 2️. Run the Attacker Flood
+
 On another terminal (attacker machine or even same Pi in new tab):
 
 ```bash
