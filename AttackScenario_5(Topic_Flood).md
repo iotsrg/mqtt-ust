@@ -41,7 +41,7 @@ mosquitto_sub -u admin -P admin -h <RPI_IP> -t '$SYS/broker/publish/messages/#' 
 
 * `…/received` ⇒ total PUBLISH received
 * `…/sent` ⇒ total PUBLISH sent
-* `…/dropped` ⇒ **messages dropped** due to inflight/queue limits (we’ll make this number climb) ([Eclipse Mosquitto][1])
+* `…/dropped` ⇒ **messages dropped** due to inflight/queue limits (we’ll make this number climb)
 
 ---
 
@@ -261,18 +261,6 @@ client.setBufferSize(512);   // only if you truly need larger commands
 5. Consider a **separate “admin” user** and topic namespace (already done), with **strict ACLs** so only your admin client can publish `/admin/cmd`.
 
 ---
-
-##  Suggested workshop flow
-
-1. Start `$SYS` metrics & log tail.
-2. **Part A**: Run the rate flood (see counters spike).
-3. **Part B**: Run topic-churn (with and without `--retain`). Show how a new `#` subscriber gets blasted instantly when retained is used.
-4. **Part C**: Briefly hammer `/admin/cmd`; LED spasms; show ESP32 still “alive” but overloaded.
-5. Apply the **broker limits**; re-run A/B/C → show:
-
-   * \$SYS dropped counts increment (broker sheds load gracefully)
-   * Attacker cannot crash things as easily
-6. Keep the **ESP32 debounce** code to show **client-side resilience**.
 
 ---
 
