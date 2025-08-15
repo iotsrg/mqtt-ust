@@ -76,7 +76,7 @@ sudo systemctl restart mosquitto
 This hammers **one topic** with thousands of messages over **one connection**:
 
 ```bash
-yes "x" | head -n 50000 | mosquitto_pub -u attacker5 -P attackerpass -h <RPI_IP> -t flood/rate -l -q 1
+yes "x" | head -n 5000000 | mosquitto_pub -u attacker5 -P attackerpass -h <RPI_IP> -t flood/rate -l -q 1
 ```
 
 * `-l` reads lines from stdin as messages (single connection, very fast)
