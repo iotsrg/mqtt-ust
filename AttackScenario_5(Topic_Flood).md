@@ -286,7 +286,7 @@ client.setBufferSize(512);   // only if you truly need larger commands
 ##  Key takeaways
 
 * Floods can be **rate**, **size**, **topic-count**, or **retained** based.
-* Mosquitto gives you **inflight/queue/size/connection** controls — use them. ([Debian Manpages][3], [Eclipse Mosquitto][1], [SysTutorials][5])
+* Mosquitto gives you **inflight/queue/size/connection** controls — use them. ([Debian Manpages][3])
 * There’s **no built-in per-client msg/sec throttle** — enforce with firewall/gateway if needed. ([Stack Overflow][6])
 * Harden clients: **debounce `/admin/cmd`**, validate inputs, and keep ACLs tight.
 
