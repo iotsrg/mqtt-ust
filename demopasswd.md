@@ -1,7 +1,10 @@
-espuser your_password
+# User Password Table
 
-attacker2 attackerpass
-
-attacker3 attackerpass
-
-admin admin
+| User      | Password      |
+|-----------|---------------|
+| espuser   | your_password |
+| attacker2 | attackerpass  |
+| attacker3 | attackerpass  |
+| attacker4 | attackerpass  |
+| attacker5 | attackerpass  |
+| admin     | admin         |
