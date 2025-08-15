@@ -36,7 +36,7 @@ Open a **metrics terminal** (temporarily allow \$SYS read for your admin user if
 
 ```bash
 # See message counters, dropped counts, etc.
-mosquitto_sub -u admin -P adminpass -h <RPI_IP> -t '$SYS/broker/publish/messages/#' -v
+mosquitto_sub -u admin -P admin -h <RPI_IP> -t '$SYS/broker/publish/messages/#' -v
 ```
 
 * `…/received` ⇒ total PUBLISH received
