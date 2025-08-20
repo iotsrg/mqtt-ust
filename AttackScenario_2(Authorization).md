@@ -2,7 +2,7 @@
 
 ---
 
-##  Attack Scenario 2: **Lack of Authorization**
+#  Attack Scenario 2: **Lack of Authorization**
 
 Even if authentication is enabled, without **access control (authorization)**, any authenticated user can **publish or subscribe to any topic** - including sensitive or control topics.
 
