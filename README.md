@@ -1,10 +1,10 @@
 
-# 🚨 MQTT Mayhem: Publish & Pwn  
+# MQTT Mayhem: Publish & Pwn  
 _Exploiting and Securing MQTT in IoT Environments_
 
 ---
 
-## 🧠 Overview
+## Overview
 
 **Duration:** 2 Hours  
 **Target Audience:** IoT Pentesters, Firmware Developers, Embedded Security Engineers  
@@ -12,7 +12,7 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 ---
 
-## 🧰 Lab Setup
+## Lab Setup
 
 ### Required Tools:
 - MQTT Broker (e.g., Mosquitto)
@@ -22,7 +22,7 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 ---
 
-## 🧱 Workshop Agenda
+## Workshop Agenda
 
 ### Setup and Warm-Up
 - Start the broker and connect it to the ESP32 client
@@ -90,7 +90,7 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 ---
 
-## 🔧 Tools Mentioned
+## Tools Mentioned
 
 - **Mosquitto**: Lightweight MQTT broker
 - **MQTT Explorer**: GUI client for debugging
@@ -100,7 +100,7 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 ---
 
-## 📁 Workshop Deliverables
+## Workshop Deliverables
 
 - Vulnerable firmware for ESP32
 - Pre-configured Mosquitto broker configuration
