@@ -5,7 +5,7 @@
 
 ###  Goal:
 
-Show how an attacker can **inject a persistent command** into a topic (like `/admin/cmd`) using a **retained message**, so that the ESP32 executes the command **automatically on reconnect** — even if the attacker is no longer active.
+Show how an attacker can **inject a persistent command** into a topic (like `/admin/cmd`) using a **retained message**, so that the ESP32 executes the command **automatically on reconnect** - even if the attacker is no longer active.
 
 ---
 
@@ -72,7 +72,7 @@ This stores `"on"` on topic `/admin/cmd` **on the broker**
 3. Immediately, broker sends `"on"` → LED turns on
     Even though no attacker is online!
 
-You’ll see no activity on the attacker’s terminal — it’s **silent, stealthy persistence**
+You’ll see no activity on the attacker’s terminal - it’s **silent, stealthy persistence**
 
 ---
 
@@ -144,6 +144,6 @@ topic /admin/cmd retain false
 
 ---
 
-> "MQTT retains messages by design — great for sensor dashboards, but dangerous for control topics unless explicitly managed."
+> "MQTT retains messages by design - great for sensor dashboards, but dangerous for control topics unless explicitly managed."
 
 ---
