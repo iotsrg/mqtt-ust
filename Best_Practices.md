@@ -94,7 +94,7 @@
 
 ---
 
-## Quick Remediation Mapping (from your labs)
+## Quick Remediation Mapping (from labs/Demos)
 
 * **Anonymous access** → Enforce auth + ACLs.
 * **Unauthorized publish/subscribe** → ACLs.
