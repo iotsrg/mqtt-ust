@@ -1,7 +1,7 @@
 
 ---
 
-## Attack Scenario 1: Anonymous Access to MQTT Broker
+# Attack Scenario 1: Anonymous Access to MQTT Broker
 
 ### **Goal:** Show that an attacker can connect to MQTT broker **without authentication**, publish arbitrary messages (e.g., LED on/off), and subscribe to sensitive topics (e.g., DHT data).
 
