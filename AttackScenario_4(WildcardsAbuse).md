@@ -1,7 +1,7 @@
 
 #  Attack Scenario 4: Wildcard Subscription Exploitation (Topic Snooping)
 
-Even with authentication enabled, a user who’s allowed to **subscribe too broadly** (e.g., `#` or `+/+`) can **see everything** flowing through the broker — including **admin commands** on `/admin/cmd` and your **sensor data**.
+Even with authentication enabled, a user who’s allowed to **subscribe too broadly** (e.g., `#` or `+/+`) can **see everything** flowing through the broker - including **admin commands** on `/admin/cmd` and your **sensor data**.
 
 ---
 
@@ -104,7 +104,7 @@ If it is restricted and configured properly, only Authenticated admins can read 
 
 ## Remediation: Principle of Least Privilege (No Wildcards)
 
-### 1) Tighten ACLs — **Exact topics only**
+### 1) Tighten ACLs - **Exact topics only**
 
 Replace your `/etc/mosquitto/acl` with **narrow rules**:
 
