@@ -69,7 +69,7 @@ sudo systemctl restart mosquitto
 
 ---
 
-##  Part A — High-rate publish flood (single topic)
+##  Part A - High-rate publish flood (single topic)
 
 ### Quick one-liner (simple, fast)
 
@@ -90,7 +90,7 @@ yes "x" | head -n 5000000 | mosquitto_pub -u attacker5 -P attackerpass -h <RPI_I
 
 ---
 
-##  Part B — Topic-churn flood (create thousands of topics)
+##  Part B - Topic-churn flood (create thousands of topics)
 
 ### Python “attacker” (recommended)
 
@@ -156,7 +156,7 @@ python3 attacker_topic_churn.py --host <RPI IP> --user attacker5 --pw attackerpa
 
 ---
 
-##  Part C — Direct client overload (hammer `/admin/cmd`)
+##  Part C - Direct client overload (hammer `/admin/cmd`)
 
 
 
@@ -286,8 +286,8 @@ client.setBufferSize(512);   // only if you truly need larger commands
 ##  Key takeaways
 
 * Floods can be **rate**, **size**, **topic-count**, or **retained** based.
-* Mosquitto gives you **inflight/queue/size/connection** controls — use them. ([Debian Manpages][3])
-* There’s **no built-in per-client msg/sec throttle** — enforce with firewall/gateway if needed. ([Stack Overflow][6])
+* Mosquitto gives you **inflight/queue/size/connection** controls - use them. ([Debian Manpages][3])
+* There’s **no built-in per-client msg/sec throttle** - enforce with firewall/gateway if needed. ([Stack Overflow][6])
 * Harden clients: **debounce `/admin/cmd`**, validate inputs, and keep ACLs tight.
 
 [3]: https://manpages.debian.org/stretch/mosquitto/mosquitto.conf.5.en.html "mosquitto.conf(5)"
