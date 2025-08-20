@@ -16,14 +16,9 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 ### Required Tools:
 - MQTT Broker (e.g., Mosquitto)
-- MQTT clients and visualizers (e.g., MQTT Explorer, MQTT Spy)
-- MQTT pentest tools (e.g., EvilMQTT, Ioxy, MQTT-Fuzz)
+- MQTT clients and visualizers 
+- MQTT pentest tools (MQTT-Fuzz)
 - ESP32 development board (acting as a vulnerable MQTT client)
-
-### Network Environment:
-- Local broker accessible to the ESP32 and attack machine
-- Basic UART or OTA-based logging on ESP32
-- Optional rogue access point or DNS spoofing for redirection demos
 
 ---
 
@@ -99,13 +94,8 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 - **Mosquitto**: Lightweight MQTT broker
 - **MQTT Explorer**: GUI client for debugging
-- **ralmqtt** - https://github.com/Red-Alert-Labs/ralmqtt/
-- **EvilMQTT**: Rogue MQTT broker for exploitation
-- **Ioxy**: MITM proxy for MQTT traffic inspection
 - **Boofuzz / MQTT-Fuzz**: Used for protocol fuzzing and broker stress tests
 - **ESP32**: IoT device to emulate real-world MQTT clients
-- **IoT-MQTT-Healthcare-Simulator**: https://github.com/ErickJO16/IoT-MQTT-Healthcare-Simulator
-- **ICS-Ninja-Scanner**: https://github.com/MottaSec/ICS-Ninja-Scanner
 
 
 ---
