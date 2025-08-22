@@ -202,6 +202,7 @@ mosquitto_pub -u espuser -P your_password -h <RPI_IP> -t /admin/cmd -m "on"
 
  Works as expected
 
+## Authentication Bruteforce !!! (No rate limiting by default) 
 ---
 
 ## 📋 Summary for Workshop
