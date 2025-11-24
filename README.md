@@ -21,6 +21,8 @@ _Exploiting and Securing MQTT in IoT Environments_
 - ESP32 development board (acting as a vulnerable MQTT client)
 - Raspberrypi (acts as MQTT Broker)
 
+
+##  Steps
 ### Steps to setup MQTT Client [ESP32]:
 ### [Client Setup](https://github.com/iotsrg/mqtt-ust/blob/main/Rpi_Installation.md)
 ---
@@ -29,14 +31,6 @@ _Exploiting and Securing MQTT in IoT Environments_
 ### [Broker Setup](https://github.com/iotsrg/mqtt-ust/blob/main/ESP32_Installation-MQTT_DHT(Client).md)
 ---
 
-##  Steps
-
-### Setup 
-- Start the broker and connect it to the ESP32 client
-- Setup topic subscriptions and sensor/actuator emulation
-- Confirm working communication flow between ESP32 and broker
-
----
 
 ### MQTT Protocol Deep Dive (Good to know before pentesting/Labs)
 - Cover the MQTT architecture: clients, broker, topics, sessions
@@ -46,7 +40,13 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 ---
 
-### Exploiting MQTT Vulnerabilities
+### Setup 
+- Start the broker and connect it to the ESP32 client
+- Setup topic subscriptions and sensor/actuator emulation
+- Confirm working communication flow between ESP32 and broker
+
+
+### MQTT Vulnerabilities [included in labs]
 
 #### Anonymous Access
 - Demonstrate how brokers without authentication can be freely accessed by attackers
@@ -65,40 +65,25 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 ---
 
-### MQTT Broker Hardening
 
-#### Authentication and Authorization
-- Enable password protection for clients
-- Use access control lists (ACLs) to restrict publish/subscribe rights
+### Ready for labs?
+#### [DIY Labs](https://github.com/iotsrg/mqtt-ust/blob/main/Attack-Scenarios-DIY%20Labs)
 
-#### Encryption
-- Secure MQTT with TLS to prevent eavesdropping and MITM attacks
-
-#### Retained Message Management
-- Disable or strictly control retained message behavior for critical topics
-
-#### Payload Validation
-- Validate message formats and lengths on the client side (e.g., inside ESP32 firmware)
-
+### Case Study - CVE-2021-34432
+#### [CVE-2021-34432](https://github.com/iotsrg/mqtt-ust/blob/main/CVE-2021-34432%20(RCA).md)
 
 
 ---
-## Best Practices:
-### [Link](https://github.com/iotsrg/mqtt-ust/blob/main/Best_Practices.md)
+### Best Practices:
+#### [Link](https://github.com/iotsrg/mqtt-ust/blob/main/Best_Practices.md)
 
 ---
 
-## Ready for labs?
-### [DIY Labs](https://github.com/iotsrg/mqtt-ust/blob/main/Attack-Scenarios-DIY%20Labs)
 
-## Case Study - CVE-2021-34432
-### [CVE-2021-34432](https://github.com/iotsrg/mqtt-ust/blob/main/CVE-2021-34432%20(RCA).md)
+### What-Next? - BonusPoints
+#### [Link](https://github.com/iotsrg/mqtt-ust/blob/main/What-Next%3F%20-%20BonusPoints.md)
 
-## What-Next? - BonusPoints
-### [Link](https://github.com/iotsrg/mqtt-ust/blob/main/What-Next%3F%20-%20BonusPoints.md)
-
-
-## References
+### References
 
 
 - https://www.instructables.com/Secure-Mosquitto-MQTT-Server-for-IoT-Devices-ESP32/
