@@ -24,11 +24,11 @@ _Exploiting and Securing MQTT in IoT Environments_
 
 ##  Steps
 ### Steps to setup MQTT Client [ESP32]:
-### [Client Setup](https://github.com/iotsrg/mqtt-ust/blob/main/Rpi_Installation.md)
+#### [Client Setup](https://github.com/iotsrg/mqtt-ust/blob/main/Rpi_Installation.md)
 ---
 
 ### Steps to setup MQTT Broker [Rpi]:
-### [Broker Setup](https://github.com/iotsrg/mqtt-ust/blob/main/ESP32_Installation-MQTT_DHT(Client).md)
+#### [Broker Setup](https://github.com/iotsrg/mqtt-ust/blob/main/ESP32_Installation-MQTT_DHT(Client).md)
 ---
 
 
