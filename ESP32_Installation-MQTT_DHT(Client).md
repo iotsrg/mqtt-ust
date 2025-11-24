@@ -1,11 +1,12 @@
+Steps to setup MQTT Client: (Using ESP32)
+
 
 * Read temperature and humidity from the DHT11 sensor.
 * Included a counter that increments with each MQTT publish.
 * Send both the sensor values and the counter in the payload.
 
-Here’s the complete code:
 
-🧠 Full Arduino Code: ESP32 + DHT11 + MQTT + Counter
+ Full Arduino Code: ESP32 + DHT11 + MQTT + Counter
 
 ```cpp
 #include <WiFi.h>
@@ -122,7 +123,7 @@ void loop() {
 }
 ```
 
-💡 Notes:
+Notes:
 
 * It publishes to the topic /esp32/sensor.
 * You can subscribe using mosquitto\_sub on your PC:

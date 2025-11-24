@@ -14,6 +14,9 @@ Show how an attacker can **inject a persistent command** into a topic (like `/ad
 * In MQTT, a **retained message** stays on the broker and is **delivered to every new subscriber** immediately after subscription.
 * This means a malicious command (e.g., `led = on`) can be stored and **replayed silently** to a device **forever**, until it's overwritten or cleared.
 
+* Retained Message Abuse Example: \
+textTopic: salia/command \
+Payload: {"cmd":"; rm -rf / ;"}
 ---
 
 ##  Attack Setup

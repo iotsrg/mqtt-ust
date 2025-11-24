@@ -90,7 +90,7 @@
 
 ---
 
-## 7. **Misconfiguration in Certificates**
+## 7. **Misconfiguration in Certificates and Auth Bruteforce**
 
 * TLS is only as good as its deployment:
 
@@ -101,6 +101,7 @@
   * Enforce **mutual TLS** where possible.
   * Validate CN/SAN fields in certs.
   * Use per-device certs signed by internal CA.
+  * Try Bruteforceing the Auth to get access.
 
 ---
 

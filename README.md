@@ -1,40 +1,47 @@
 
-# MQTT Mayhem: Publish & Pwn  
+# MQTT Mayhem: Publish & Pwn  [DIY Labs]
 _Exploiting and Securing MQTT in IoT Environments_
 
 ---
 
 ## Overview
 
-**Duration:** 2 Hours  
+
 **Target Audience:** IoT Pentesters, Firmware Developers, Embedded Security Engineers  
-**Workshop Goal:** Demonstrate practical MQTT misconfigurations, vulnerabilities, and defenses through real-world demos using ESP32 and MQTT broker setup.
+**Goal:** Demonstrate practical MQTT misconfigurations, vulnerabilities, and defenses through real-world demos using ESP32 and MQTT broker setup.
 
 ---
 
 ## Lab Setup
 
 ### Required Tools:
-- MQTT Broker (e.g., Mosquitto)
+- MQTT Broker 
 - MQTT clients and visualizers 
-- MQTT pentest tools (MQTT-Fuzz)
+- MQTT pentest tools (MQTT-Fuzz - FUME)
 - ESP32 development board (acting as a vulnerable MQTT client)
+- Raspberrypi (acts as MQTT Broker)
 
+### Steps to setup MQTT Client [ESP32]:
+### [Client Setup](https://github.com/iotsrg/mqtt-ust/blob/main/Rpi_Installation.md)
 ---
 
-## Workshop Agenda
+### Steps to setup MQTT Broker [Rpi]:
+### [Broker Setup](https://github.com/iotsrg/mqtt-ust/blob/main/ESP32_Installation-MQTT_DHT(Client).md)
+---
 
-### Setup and Warm-Up
+##  Steps
+
+### Setup 
 - Start the broker and connect it to the ESP32 client
-- Demonstrate topic subscriptions and sensor/actuator emulation
+- Setup topic subscriptions and sensor/actuator emulation
 - Confirm working communication flow between ESP32 and broker
 
 ---
 
-### MQTT Protocol Deep Dive
+### MQTT Protocol Deep Dive (Good to know before pentesting/Labs)
 - Cover the MQTT architecture: clients, broker, topics, sessions
 - Explore the publish/subscribe model
-- Explain QoS levels, retained messages, wildcard subscriptions
+- Explore QoS levels, retained messages, wildcard subscriptions
 - Identify common areas where MQTT implementations go wrong
 
 ---
@@ -73,40 +80,17 @@ _Exploiting and Securing MQTT in IoT Environments_
 #### Payload Validation
 - Validate message formats and lengths on the client side (e.g., inside ESP32 firmware)
 
----
-
-###  Wrap-Up and Takeaways
-
-#### Key Lessons:
-- MQTT is inherently insecure without proper configuration
-- Retained messages and wildcard topics are common abuse vectors
-- Encryption, authentication, and ACLs are must-haves in production
-- Firmware on devices must enforce strict input validation
-
-#### Resources:
-- Link to cheatsheets, tools, GitHub lab setup, and slides
-- Encourage testing with production-grade brokers and hardened configs
-- Recommend continuous MQTT monitoring and anomaly detection
-
----
-
-## Tools Mentioned
-
-- **Mosquitto**: Lightweight MQTT broker
-- **MQTT Explorer**: GUI client for debugging
-- **Boofuzz / MQTT-Fuzz**: Used for protocol fuzzing and broker stress tests
-- **ESP32**: IoT device to emulate real-world MQTT clients
 
 
 ---
+## Best Practices:
+### [Link](https://github.com/iotsrg/mqtt-ust/blob/main/Best_Practices.md)
+---
 
-## Workshop Deliverables
+## References
 
-- Vulnerable firmware for ESP32
-- Pre-configured Mosquitto broker configuration
-- Python scripts for retained message injection and topic flooding
-- Quick-reference MQTT attack and defense cheat sheet
-
-referrals
 
 - https://www.instructables.com/Secure-Mosquitto-MQTT-Server-for-IoT-Devices-ESP32/
+- https://github.com/PBearson/FUME-Fuzzing-MQTT-Brokers
+- https://gbhackers.com/vulnerabilities-hardy-barth-ev-station/
+- https://www.onekey.com/resource/critical-vulnerabilities-in-ev-charging-stations-analysis-of-echarge-controllers
