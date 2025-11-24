@@ -85,7 +85,18 @@ _Exploiting and Securing MQTT in IoT Environments_
 ---
 ## Best Practices:
 ### [Link](https://github.com/iotsrg/mqtt-ust/blob/main/Best_Practices.md)
+
 ---
+
+## Ready for labs?
+### [DIY Labs](https://github.com/iotsrg/mqtt-ust/blob/main/Attack-Scenarios-DIY%20Labs)
+
+## Case Study - CVE-2021-34432
+### [CVE-2021-34432](https://github.com/iotsrg/mqtt-ust/blob/main/CVE-2021-34432%20(RCA).md)
+
+## What-Next? - BonusPoints
+### [Link](https://github.com/iotsrg/mqtt-ust/blob/main/What-Next%3F%20-%20BonusPoints.md)
+
 
 ## References
 
